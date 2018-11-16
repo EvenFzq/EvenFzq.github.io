@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="Even&amp;Fzq">
 <meta property="og:description" content="创建表空间12345CREATE tablespace fuziqindatafile &amp;apos;c:\fuziqin.dbf&amp;apos;size 100mautoextend onnext 10m; 删除表空间1drop tablespace fuziqin 创建用户123create user fuziqinidentified by fuziqindefault tablespace fu">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-16T17:52:47.738Z">
+<meta property="og:updated_time" content="2018-11-16T18:00:54.013Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle学习_01">
 <meta name="twitter:description" content="创建表空间12345CREATE tablespace fuziqindatafile &amp;apos;c:\fuziqin.dbf&amp;apos;size 100mautoextend onnext 10m; 删除表空间1drop tablespace fuziqin 创建用户123create user fuziqinidentified by fuziqindefault tablespace fu">
@@ -440,7 +440,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">SELECT</span><br><span class="line">	t.DEPTNO,</span><br><span class="line">	t.msal,</span><br><span class="line">	e.ENAME,</span><br><span class="line">	d.DNAME </span><br><span class="line">FROM</span><br><span class="line">	( SELECT DEPTNO, min( sal ) msal FROM emp GROUP BY DEPTNO ) t,</span><br><span class="line">	emp e,</span><br><span class="line">	dept d </span><br><span class="line">WHERE</span><br><span class="line">	t.deptno = e.deptno </span><br><span class="line">	AND t.msal = e.sal </span><br><span class="line">	AND e.deptno = d.deptno;</span><br></pre></td></tr></table></figure>
 <h4 id="分页"><a href="#分页" class="headerlink" title="分页"></a>分页</h4><p>rownum行号:当我们做select操作的时候,每查询出一行记录,就会在该行上加一个行号,</p>
 <p>行号从1开始,依次递增,不能跳序</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">----排序操作会影响rownum的顺序</span><br><span class="line">select rownum, e.* from emp e order by e.sal desc</span><br><span class="line">----如果涉及到排序，但是还要使用rownum的话，我们可以再次嵌套查询。</span><br><span class="line">SELECT ROWNUM</span><br><span class="line">	,</span><br><span class="line">	t.* </span><br><span class="line">FROM</span><br><span class="line">	( SELECT ROWNUM, e.* FROM EMP e ORDER BY e.sal DESC ) t;</span><br><span class="line"></span><br><span class="line">----emp表工资倒叙排列后，每页五条记录，查询第二页。</span><br><span class="line">----rownum行号不能写上大于一个正数。</span><br><span class="line">SELECT</span><br><span class="line">	* </span><br><span class="line">FROM</span><br><span class="line">	( SELECT ROWNUM rn, tt.* FROM ( SELECT * FROM emp ORDER BY sal DESC ) tt WHERE ROWNUM &lt; 11 ) </span><br><span class="line">WHERE</span><br><span class="line">	rn &gt;5</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">--排序操作会影响rownum的顺序</span><br><span class="line">select rownum, e.* from emp e order by e.sal desc</span><br><span class="line">--如果涉及到排序，但是还要使用rownum的话，我们可以再次嵌套查询。</span><br><span class="line">SELECT ROWNUM</span><br><span class="line">	,</span><br><span class="line">	t.* </span><br><span class="line">FROM</span><br><span class="line">	( SELECT ROWNUM, e.* FROM EMP e ORDER BY e.sal DESC ) t;</span><br><span class="line"></span><br><span class="line">--emp表工资倒叙排列后，每页五条记录，查询第二页。</span><br><span class="line">--rownum行号不能写上大于一个正数。</span><br><span class="line">SELECT</span><br><span class="line">	* </span><br><span class="line">FROM</span><br><span class="line">	( SELECT ROWNUM rn, tt.* FROM ( SELECT * FROM emp ORDER BY sal DESC ) tt WHERE ROWNUM &lt; 11 ) </span><br><span class="line">WHERE</span><br><span class="line">	rn &gt;5</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -480,6 +480,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/17/strategy-pattern/" rel="prev" title="23种设计模式之strategy pattern">
+                23种设计模式之strategy pattern <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -558,7 +562,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -569,7 +573,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -580,7 +584,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
