@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-11-22T04:30:46.005Z</updated>
+  <updated>2018-11-23T02:28:04.020Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://yoursite.com/2018/11/22/idea%E8%B0%83%E8%AF%95%E5%8A%9F%E8%83%BD/"/>
     <id>http://yoursite.com/2018/11/22/idea调试功能/</id>
     <published>2018-11-21T18:02:36.602Z</published>
-    <updated>2018-11-22T04:30:46.005Z</updated>
+    <updated>2018-11-23T02:28:04.020Z</updated>
     
     <content type="html"><![CDATA[<p>今天bug太多,要气死喵了,气到不想敲码,整理整理debug功能的使用,bug真是让人头秃,叉会儿腰!</p><h3 id="bug使我强-头-大-秃-debug功能"><a href="#bug使我强-头-大-秃-debug功能" class="headerlink" title="bug使我强(头)大(秃)!_debug功能"></a>bug使我强(头)大(秃)!_debug功能</h3><p>1.心平气和改bug!</p><p>2.扎实基础!(flag)</p><p>3.代码规范</p><p><img src="/images/idea调试.jpg" alt=""></p><h2 id="设置断点"><a href="#设置断点" class="headerlink" title="设置断点"></a>设置断点</h2><p><img src="/images/idea调试_01.png" alt="1542801420385"></p><h2 id="开启调试会话"><a href="#开启调试会话" class="headerlink" title="开启调试会话"></a>开启调试会话</h2><p>这只冒着绿光的小虫子</p><p><img src="/images/idea调试_02.png" alt="img"></p><p><img src="/images/idea调试_03.png" alt="1542803118466"></p><h2 id="单步调试"><a href="#单步调试" class="headerlink" title="单步调试"></a>单步调试</h2><ul><li><p>step over</p><p>程序向下执行一行(如果当前行有方法调用,这个方法将被执行完)</p></li><li><p>step into</p><p>如果该行有自定义的方法,则会进入自定义的方法(不会进入官方类库的方法)</p></li><li><p>force step into</p><p>该按钮在调试的时候能进入任何方法</p></li><li><p>step out</p><p>如果在调试的时候进入一个方法,并觉得没有问题,可以跳出该方法.</p><p>(之前笨的要死,一直step over到下一行)</p></li><li><p>drop frame</p><p>这个按钮返回到当前方法的调用处重新执行,并且上下文有关变量也会回到那个时候,只要调用链中还有上级方法,可以跳到任何一个方法</p></li></ul><p><img src="/images/idea调试_04.png" alt=""></p><h2 id="跨断点调试"><a href="#跨断点调试" class="headerlink" title="跨断点调试"></a>跨断点调试</h2><p>程序运行到下一个断点处,后面没有断点,则执行完程序</p><p><img src="/images/idea调试_05.png" alt="1542821550967"></p><h2 id="查看断点"><a href="#查看断点" class="headerlink" title="查看断点"></a>查看断点</h2><p>可以查看设置过的断点,设置断点的一些属性</p><p>可以设置条件断点（满足某个条件的时候，暂停程序的执行，如 c==97）。结束调试后，把所设的断点删除(选择要删除的断点后，点击上方的红色减号）</p><p><img src="/images/idea调试_06.png" alt="1542821976708"></p><h2 id="设置变量值"><a href="#设置变量值" class="headerlink" title="设置变量值"></a>设置变量值</h2><p>选中变量,右键setValue可以设置变量值.</p><p>(迷迷糊糊把idea关了,懒开了,睡吧睡吧付紫琴,晚安啦,明天再寻思寻思怎么高效的debug)</p><p><img src="/images/idea调试_07.png" alt="1542822584146"></p>]]></content>
     
