@@ -84,15 +84,15 @@
 <meta name="description" content="面对这些有类似的属性但不同的行为的类来说，使用策略模式便有利于类的拓展，其原则是：多用组合，少用继承。 图片图片图片图片没有没有没有显示显示显示显示显示不困不困不困不困不困怎么办上次上次上次都可以显示,为什么这次不显示不显示不显示睡觉,晚安!">
 <meta name="keywords" content="Java,设计模式,策略模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="23种设计模式之strategy pattern">
+<meta property="og:title" content="设计模式学习之策略模式 strategy pattern!">
 <meta property="og:url" content="https://fzqeven.top/2018/11/17/strategy-pattern/index.html">
 <meta property="og:site_name" content="Even&amp;Fzq">
 <meta property="og:description" content="面对这些有类似的属性但不同的行为的类来说，使用策略模式便有利于类的拓展，其原则是：多用组合，少用继承。 图片图片图片图片没有没有没有显示显示显示显示显示不困不困不困不困不困怎么办上次上次上次都可以显示,为什么这次不显示不显示不显示睡觉,晚安!">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://fzqeven.top/images/strategyPattern.png">
-<meta property="og:updated_time" content="2018-11-22T08:09:53.091Z">
+<meta property="og:updated_time" content="2018-11-24T01:55:26.430Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="23种设计模式之strategy pattern">
+<meta name="twitter:title" content="设计模式学习之策略模式 strategy pattern!">
 <meta name="twitter:description" content="面对这些有类似的属性但不同的行为的类来说，使用策略模式便有利于类的拓展，其原则是：多用组合，少用继承。 图片图片图片图片没有没有没有显示显示显示显示显示不困不困不困不困不困怎么办上次上次上次都可以显示,为什么这次不显示不显示不显示睡觉,晚安!">
 <meta name="twitter:image" content="https://fzqeven.top/images/strategyPattern.png">
 
@@ -130,7 +130,7 @@
 
 
 
-  <title>23种设计模式之strategy pattern | Even&Fzq</title>
+  <title>设计模式学习之策略模式 strategy pattern! | Even&Fzq</title>
   
 
 
@@ -284,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">23种设计模式之strategy pattern</h1>
+          <h1 class="post-title" itemprop="name headline">设计模式学习之策略模式 strategy pattern!</h1>
         
 
         <div class="post-meta">
@@ -335,6 +335,17 @@
           
 
           
+          
+             <span id="/2018/11/17/strategy-pattern/" class="leancloud_visitors" data-flag-title="设计模式学习之策略模式 strategy pattern!">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
           
 
           
@@ -483,7 +494,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -505,7 +516,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -765,8 +776,130 @@
   
 
   
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("n4mzSId4pMQy6qbO10B1anK1-gzGzoHsz", "g6SygwYKhzwXGzP5zxrvz0SS");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
 
   
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
 
   
   
