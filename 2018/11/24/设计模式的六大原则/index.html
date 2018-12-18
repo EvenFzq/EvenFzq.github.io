@@ -90,7 +90,7 @@
 <meta property="og:description" content="设计模式简介 设计模式是一套被反复使用的、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理地运用设计模式可以完美地解决很多问题，每种模式在现实中都有相应的原理来与之对应，每种模式都描述了一个">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://www.runoob.com/wp-content/uploads/2014/08/the-relationship-between-design-patterns.jpg">
-<meta property="og:updated_time" content="2018-11-24T10:35:02.615Z">
+<meta property="og:updated_time" content="2018-12-18T03:41:41.159Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="设计模式学习(一)_六大原则">
 <meta name="twitter:description" content="设计模式简介 设计模式是一套被反复使用的、多数人知晓的、经过分类编目的、代码设计经验的总结。使用设计模式是为了重用代码、让代码更容易被他人理解、保证代码可靠性。 毫无疑问，设计模式于己于他人于系统都是多赢的，设计模式使代码编制真正工程化，设计模式是软件工程的基石，如同大厦的一块块砖石一样。项目中合理地运用设计模式可以完美地解决很多问题，每种模式在现实中都有相应的原理来与之对应，每种模式都描述了一个">
@@ -399,7 +399,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,504 字
+                  2,924 字
                 </span>
               
 
@@ -415,7 +415,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9 分钟
+                  10 分钟
                 </span>
               
             </div>
@@ -463,7 +463,14 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">例如:</span><br><span class="line">客户端不应该依赖它不需要的接口；一个类对另一个类的依赖应该建立在最小的接口上。 </span><br><span class="line">问题由来：类A通过接口I依赖类B，类C通过接口I依赖类D，如果接口I对于类A和类B来说不是最小接口，则类B和类D必须去实现他们不需要的方法。</span><br><span class="line"></span><br><span class="line">解决方案：将臃肿的接口I拆分为独立的几个接口，类A和类C分别与他们需要的接口建立依赖关系。也就是采用接口隔离原则。</span><br></pre></td></tr></table></figure>
 <p>它还有另外一个意思是：降低类之间的耦合度。由此可见，其实设计模式就是从大型软件架构出发、便于升级和维护的软件设计思想，它强调降低依赖，降低耦合。</p>
 <h3 id="5、迪米特法则，又称最少知道原则（Demeter-Principle）"><a href="#5、迪米特法则，又称最少知道原则（Demeter-Principle）" class="headerlink" title="5、迪米特法则，又称最少知道原则（Demeter Principle）"></a><strong>5、迪米特法则，又称最少知道原则（Demeter Principle）</strong></h3><p>最少知道原则是指：一个实体应当尽量少地与其他实体之间发生相互作用，使得系统功能模块相对独立。<strong>一个类对他所依赖的类知道的越少越好</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">**还不理解**</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>[今天用到activeMQ时,突然理解了这个法则的应用场景,屁颠屁颠的来更新这篇笔记]<br>[这种知识突然连成一片儿的感觉超级nice啊哈哈哈]</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">由于狭义迪米特法则要求两个类不必直接通信时,进行的方法调用应当由第三个类来转发调用.这样在系统中制造出大量的小方法,从而使系统显得凌乱.</span><br><span class="line">其可以使局部的模块得到简化,但是也会造成模块间的通信效率降低,使模块间不容易协调.</span><br><span class="line"></span><br><span class="line">但是迪米特法则讨论的是对象之间信息的流量,方向以及信息影响的控制.主要的意图是控制信息过载.要求一个模块应当尽可能的将自己的内部数据和实现细节隐藏起来,也就是要求有良好的封装性.</span><br><span class="line"></span><br><span class="line">另以今天理解JMS和activeMQ为例,JMS是消息服务的一组规范和接口,activeMQ则是JMS的实现.</span><br><span class="line">服务层和web层交互,模块间的依赖则存在一系列耦合关系.耦合越多,后期的维护工作则越难.改善模块间的调用关系.则应用到了消息中介,模块与模块之间互相不认识.消息的发送者和接收者互不影响,实现过程都被封装了.</span><br><span class="line">即回到六字箴言--&quot;高内聚,低耦合&quot;.</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>设计模式的门面模式(Facade) 和中介模式(Mediator),都是迪米特法则的应用.</p>
+<p>啊哈,这两个模式还没有学习到,安排上了~</p>
+</blockquote>
 <p>迪米特法则还有一个更简单的定义：只与直接的朋友通信。首先来解释一下什么是直接的朋友：每个对象都会与其他对象有耦合关系，只要两个对象之间有耦合关系，我们就说这两个对象之间是朋友关系。耦合的方式很多，依赖、关联、组合、聚合等。其中，我们称出现成员变量、方法参数、方法返回值中的类为直接的朋友，而出现在局部变量中的类则不是直接的朋友。也就是说，陌生的类最好不要作为局部变量的形式出现在类的内部。</p>
 <h3 id="6、合成复用原则（Composite-Reuse-Principle）"><a href="#6、合成复用原则（Composite-Reuse-Principle）" class="headerlink" title="6、合成复用原则（Composite Reuse Principle）"></a><strong>6、合成复用原则（Composite Reuse Principle）</strong></h3><p>合成复用原则是指：尽量使用合成/聚合的方式，而不是使用继承。</p>
 <h2 id="设计模式的类型"><a href="#设计模式的类型" class="headerlink" title="设计模式的类型"></a>设计模式的类型</h2><p>根据设计模式的参考书 <strong>Design Patterns - Elements of Reusable Object-Oriented Software（中文译名：设计模式 - 可复用的面向对象软件元素）</strong> 中所提到的，总共有 23 种设计模式。</p>
@@ -755,7 +762,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共8.3k字</span>
+  <span class="post-count">博客全站共8.7k字</span>
 </div>
 
         
