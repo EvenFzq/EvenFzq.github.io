@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Linux,xshell/xftp,docker,">
 
 
 
@@ -81,16 +81,22 @@
 
 
 
-<meta name="description" content="Smart is the new Sexy!">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Even&amp;Fzq">
-<meta property="og:url" content="https://fzqeven.top/tags/设计模式/index.html">
+<meta name="description" content="折腾了一天,踩了巨多的坑,由于对Linux的挂载点不清楚,docker的相关文件存储位置也不知道,目录管理起来很麻烦,搜索了一些资料,下面将docker的默认位置从/usr/lib/docker移出去 docker常用命令  安装了xshell和xftp之后 使用docker来管理云简直太方便了,cool ~ ~ 记录部分便于查阅  12345678910111213141516171819202">
+<meta name="keywords" content="Linux,xshell&#x2F;xftp,docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二  |使用docker搭建java环境|更改docker默认文件位置">
+<meta property="og:url" content="https://fzqeven.top/2019/01/06/服务器(2)/index.html">
 <meta property="og:site_name" content="Even&amp;Fzq">
-<meta property="og:description" content="Smart is the new Sexy!">
+<meta property="og:description" content="折腾了一天,踩了巨多的坑,由于对Linux的挂载点不清楚,docker的相关文件存储位置也不知道,目录管理起来很麻烦,搜索了一些资料,下面将docker的默认位置从/usr/lib/docker移出去 docker常用命令  安装了xshell和xftp之后 使用docker来管理云简直太方便了,cool ~ ~ 记录部分便于查阅  12345678910111213141516171819202">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://fzqeven.top/images/fuwuqidajian/fuwu21.png">
+<meta property="og:image" content="https://fzqeven.top/images/fuwuqidajian/fuwu22.png">
+<meta property="og:image" content="https://fzqeven.top/images/fuwuqidajian/1546764768795.png">
+<meta property="og:updated_time" content="2019-01-06T13:55:49.699Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Even&amp;Fzq">
-<meta name="twitter:description" content="Smart is the new Sexy!">
+<meta name="twitter:title" content="二  |使用docker搭建java环境|更改docker默认文件位置">
+<meta name="twitter:description" content="折腾了一天,踩了巨多的坑,由于对Linux的挂载点不清楚,docker的相关文件存储位置也不知道,目录管理起来很麻烦,搜索了一些资料,下面将docker的默认位置从/usr/lib/docker移出去 docker常用命令  安装了xshell和xftp之后 使用docker来管理云简直太方便了,cool ~ ~ 记录部分便于查阅  12345678910111213141516171819202">
+<meta name="twitter:image" content="https://fzqeven.top/images/fuwuqidajian/fuwu21.png">
 
 
 
@@ -120,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="https://fzqeven.top/tags/设计模式/">
+  <link rel="canonical" href="https://fzqeven.top/2019/01/06/服务器(2)/">
 
 
 
 
 
-  <title>标签: 设计模式 | Even&Fzq</title>
+  <title>二  |使用docker搭建java环境|更改docker默认文件位置 | Even&Fzq</title>
   
 
 
@@ -145,7 +151,7 @@
     
   
 
-  <div class="container sidebar-position-right ">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -287,52 +293,242 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>设计模式<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fzqeven.top/2019/01/06/服务器(2)/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/hexo_logo.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even&Fzq">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/11/17/strategy-pattern/" itemprop="url">
-              
-                <span itemprop="name">设计模式学习之策略模式 strategy pattern!</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">二  |使用docker搭建java环境|更改docker默认文件位置</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-17T02:05:19+08:00" content="2018-11-17">
-          11-17
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-06T19:54:52+08:00">
+                2019-01-06
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/阿里云服务器/" itemprop="url" rel="index">
+                    <span itemprop="name">阿里云服务器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/01/06/服务器(2)/" class="leancloud_visitors" data-flag-title="二  |使用docker搭建java环境|更改docker默认文件位置">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  561 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>折腾了一天,踩了巨多的坑,由于对Linux的挂载点不清楚,docker的相关文件存储位置也不知道,目录管理起来很麻烦,搜索了一些资料,下面将docker的默认位置从/usr/lib/docker移出去</p>
+<h2 id="docker常用命令"><a href="#docker常用命令" class="headerlink" title="docker常用命令"></a>docker常用命令</h2><blockquote>
+<p> 安装了xshell和xftp之后</p>
+<p>使用docker来管理云简直太方便了,cool ~ ~</p>
+<p>记录部分便于查阅</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"> docker --help 查看docker帮助文档</span><br><span class="line"></span><br><span class="line"> systemctl start docker 启动docker</span><br><span class="line"> </span><br><span class="line"> systemctl stop docker  停止docker</span><br><span class="line"> </span><br><span class="line"> systemctl restart docker 重启docker</span><br><span class="line"> </span><br><span class="line"> systemctl enable docker 开机启动</span><br><span class="line"> ---------------------------------------------</span><br><span class="line"> docker ps 查看当前正在运行的容器</span><br><span class="line"></span><br><span class="line"> docker ps -a 查看所有容器的状态</span><br><span class="line"></span><br><span class="line"> docker start/stop id/name 启动/停止某个容器</span><br><span class="line"></span><br><span class="line"> docker attach id 进入某个容器(使用exit退出后容器也跟着停止运行)</span><br><span class="line"></span><br><span class="line"> docker exec -it 容器id（或者name） /bin/bash  启动一个伪终端以交互式的方式进入某个容器（使用exit退出后容器不停止运行）</span><br><span class="line"></span><br><span class="line"> docker images 查看本地镜像</span><br><span class="line"> docker rm id/name 删除某个容器</span><br><span class="line"> docker rmi id/name 删除某个镜像</span><br><span class="line">---------------------</span><br><span class="line">以上命令已经够用了,</span><br><span class="line">更多详细的学习,学习参考:</span><br><span class="line">https://yeasy.gitbooks.io/docker_practice/</span><br></pre></td></tr></table></figure>
+<p>搭配daocloud图形化界面使用,连接上服务器直接操作docker的容器和镜像</p>
+<p><a href="https://dashboard.daocloud.io" target="_blank" rel="noopener">https://dashboard.daocloud.io</a></p>
+<h2 id="更改docker默认文件位置"><a href="#更改docker默认文件位置" class="headerlink" title="更改docker默认文件位置"></a>更改docker默认文件位置</h2><p>在/home 目录下创建目录.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /home</span><br><span class="line">mkdir docker</span><br></pre></td></tr></table></figure>
+<p>修改docker的systemd的 docker.service的配置文件 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/lib/systemd/system/docker.service</span><br></pre></td></tr></table></figure>
+<p>在里面的EXECStart的后面增加后如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ExecStart=/usr/bin/dockerd --graph /home/docker</span><br></pre></td></tr></table></figure>
+<p>修改前:</p>
+<p><img src="/images/fuwuqidajian/fuwu21.png" alt="img"> </p>
+<p>修改后:</p>
+<p><img src="/images/fuwuqidajian/fuwu22.png" alt="img"> </p>
+<p>如果docker是1.12或以上的版本，可以修改（或新建）daemon.json文件。修改后会立即生效，不需重启docker服务。</p>
+<p> <strong>vim /etc/docker/daemon.json</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line"> &quot;registry-mirrors&quot;: [&quot;http://7e61f7f9.m.daocloud.io&quot;],&quot;graph&quot;: &quot;/home/docker&quot;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p> 资料链接,我使用的是方法2,有效      <a href="http://blog.51cto.com/12447922/2059793" target="_blank" rel="noopener">http://blog.51cto.com/12447922/2059793</a></p>
+</blockquote>
+<p>修改了之后使用docker info 查看一下是否修改成功</p>
+<p><img src="/images/fuwuqidajian/1546764768795.png" alt="1546764768795"></p>
+<p>用了一天的时间学习了docker详细指南和基本操作命令和反反复复踩了很多的坑,下面开始来配置javaweb环境.</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+            <a href="/tags/xshell-xftp/" rel="tag"># xshell/xftp</a>
+          
+            <a href="/tags/docker/" rel="tag"># docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/06/服务器(1)/" rel="next" title="一  |阿里云Linux服务器初建(工具:Xshell/xftp)">
+                <i class="fa fa-chevron-left"></i> 一  |阿里云Linux服务器初建(工具:Xshell/xftp)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -340,6 +536,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -360,8 +560,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -450,6 +659,22 @@
 		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="285" height="86" src="//music.163.com/outchain/player?type=2&id=22676185&auto=0&height=66"></iframe>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker常用命令"><span class="nav-number">1.</span> <span class="nav-text">docker常用命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#更改docker默认文件位置"><span class="nav-number">2.</span> <span class="nav-text">更改docker默认文件位置</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -600,6 +825,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
