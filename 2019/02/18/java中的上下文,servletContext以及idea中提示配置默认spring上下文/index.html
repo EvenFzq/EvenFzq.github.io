@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="上下文,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Even&Fzq" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="简单理解 context在当前环境下你能拿到的参数都可以从context出发去拿,而不仅仅是放URL的.从里面可以拿到request,session,response…….,可以说只要你拿到了context就可以访问任何你有权限访问的东西 context就是“容器”，放的就是应用程序的所有资源，要用时候就访问它，所以context里面的东西，在同一个应用程序里面是全局的。 是一个包含各种conte">
+<meta name="keywords" content="上下文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java中的上下文,servletContext以及idea中提示配置默认spring上下文">
+<meta property="og:url" content="https://fzqeven.top/2019/02/18/java中的上下文,servletContext以及idea中提示配置默认spring上下文/index.html">
+<meta property="og:site_name" content="Even&amp;Fzq">
+<meta property="og:description" content="简单理解 context在当前环境下你能拿到的参数都可以从context出发去拿,而不仅仅是放URL的.从里面可以拿到request,session,response…….,可以说只要你拿到了context就可以访问任何你有权限访问的东西 context就是“容器”，放的就是应用程序的所有资源，要用时候就访问它，所以context里面的东西，在同一个应用程序里面是全局的。 是一个包含各种conte">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-18T06:14:49.184Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java中的上下文,servletContext以及idea中提示配置默认spring上下文">
+<meta name="twitter:description" content="简单理解 context在当前环境下你能拿到的参数都可以从context出发去拿,而不仅仅是放URL的.从里面可以拿到request,session,response…….,可以说只要你拿到了context就可以访问任何你有权限访问的东西 context就是“容器”，放的就是应用程序的所有资源，要用时候就访问它，所以context里面的东西，在同一个应用程序里面是全局的。 是一个包含各种conte">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'YXH8WQL2RC',
+      apiKey: 'b4f99c8c7314ba05f6ce0288a8493ba1',
+      indexName: 'dev_Search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"没有找到关键字相关唷~: ${query}","hits_stats":"搜索到 ${hits} 条相关记录,共耗时 ${time} ms,喵~"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://fzqeven.top/2019/02/18/java中的上下文,servletContext以及idea中提示配置默认spring上下文/">
+
+
+
+
+
+  <title>java中的上下文,servletContext以及idea中提示配置默认spring上下文 | Even&Fzq</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Even&Fzq</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">月色三分</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <div class="algolia-popup popup search-popup">
+    <div class="algolia-search">
+      <div class="algolia-search-input-icon">
+        <i class="fa fa-search"></i>
+      </div>
+      <div class="algolia-search-input" id="algolia-search-input"></div>
+    </div>
+
+    <div class="algolia-results">
+      <div id="algolia-stats"></div>
+      <div id="algolia-hits"></div>
+      <div id="algolia-pagination" class="algolia-pagination"></div>
+    </div>
+
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+  </div>
+
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://fzqeven.top/2019/02/18/java中的上下文,servletContext以及idea中提示配置默认spring上下文/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Even">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/hexo_logo.JPG">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Even&Fzq">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">java中的上下文,servletContext以及idea中提示配置默认spring上下文</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-18T14:14:49+08:00">
+                2019-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2019/02/18/java中的上下文,servletContext以及idea中提示配置默认spring上下文/" class="leancloud_visitors" data-flag-title="java中的上下文,servletContext以及idea中提示配置默认spring上下文">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,116 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="简单理解"><a href="#简单理解" class="headerlink" title="简单理解"></a>简单理解</h2><ol>
+<li>context<br>在当前环境下你能拿到的参数都可以从context出发去拿,而不仅仅是放URL的.从里面可以拿到request,<br>session,response…….,可以说只要你拿到了context就可以访问任何你有权限访问的东西</li>
+<li>context就是“容器”，放的就是应用程序的所有资源，要用时候就访问它，所以context里面的东西，在同一个应用程序里面是全局的。</li>
+<li>是一个包含各种context的设置的对象<br>例如：pageContext就包含了该页面的各种设置。可以通过他得到该页面所在服务器路径等等。<br>Context 用于在 Request 操作中指定上下文对象的对象，上下文字符串在与请求调用一起被发送之前，必须在该指定的上下文对象中进行解析。Context 对象包含 NamedValue 对象形式的属性列表。这些属性表示关于客户端、环境或请求情形的信息，它们通常是一些可能不方便作为参数传递的属性。</li>
+</ol>
+<p>所谓上下文，它是用来存储系统的一些初始化信息，例如在jboss中通过配置文件指定了数据源，那么在jboss启动的时候就把这个文件的相关信息上下文中，于是在我们使用这个数据源的时候，就需要先获得系统的上下文，然后再通过一定的方式将数据源取出来。至于在系统启动时，是如何将这些初始化信息加载到上下文中，而上下文在程序中具体又是以什么形式体现的，应该随着系统的不同而不同。</p>
+<p>　　上下文即ServletContext,(在java　web中,代表整个web应用,可以和整个应用的容器,即服务器,进行交互)是一个全局的储存信息的空间，服务器启动，其就存在，服务器关闭，其才释放。所有用户共用一个ServletContext。所以，为了节省空间，提高效率，ServletContext中，要放必须的、重要的、所有用户需要共享的线程又是安全的一些信息。如，做一个购物类的网站，要从数据库中提取物品信息，如果用session保存这些物品信息，每个用户都访问一便数据库，效率就太低了；所以要用来Servlet上下文来保存，在服务器开始时，就访问数据库，将物品信息存入Servlet上下文中，这样，每个用户只用从上下文中读入物品信息就行了。</p>
+<p>　　获取ServletContext的方法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">HttpSession session = request.getSession();</span><br><span class="line">　 session.getServletContext();</span><br></pre></td></tr></table></figure></p>
+<p>在百科上还有一种说法是:文件所在的路径<br>顺便整体整理和理解了一波ServletContext</p>
+<h2 id="ServletContext"><a href="#ServletContext" class="headerlink" title="ServletContext"></a>ServletContext</h2><blockquote>
+<p>引用自百度百科,xmind文档[笔记15]</p>
+</blockquote>
+<h3 id="概要"><a href="#概要" class="headerlink" title="概要"></a>概要</h3><p>每个应用都会有一个ServletContext对象与之关联,当容器分布在多个虚拟机上时，web应用在所分布的每个虚拟机上都拥有一个ServletContext实例。缺省情况下，ServletContext不是分布式的，并且只存在于一个虚拟机上。<br>通过ServletContext可以访问应用范围的初始化参数和属性：</p>
+<ol>
+<li>初始化参数<br>ServletContext对象是在Web应用程序装载时初始化的。正像Servlet具有初始化参数一样，ServletContext也有初始化参数。Servlet上下文初始化参数指定应用程序范围内的信息。</li>
+</ol>
+<p>在web.xml中配置初始化参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;context-param&gt;</span><br><span class="line">&lt;param-name&gt;adminEmail&lt;/param-name&gt;</span><br><span class="line">&lt;param-value&gt;webmaster&lt;/param-value&gt;</span><br><span class="line">&lt;/context-param&gt;</span><br></pre></td></tr></table></figure></p>
+<p><context-param>元素是针对整个应用的，所以并不嵌套在某个<servlet>元素中，该元素是<web-app>元 素的直接子元素。  </web-app></servlet></context-param></p>
+<p>从Servlet中访问初始化参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ServletContext application=this.getServletContext();</span><br><span class="line">out.println(&quot;send us your&quot;)</span><br><span class="line">out.println(application.getInitParameter(&quot;email&quot;));</span><br><span class="line">out.println(&quot;&apos;&gt;email&quot;);</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>属性<br>可以通过编程的方式绑定，也可以作为web应用的全局变量被所有Servlet和JSPs访问</li>
+</ol>
+<p>设置Context属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ServletContext application=this.getServletContext();</span><br><span class="line">application.setAttribute(&quot;person1&quot;,new Person(&quot;Jim&quot;));</span><br><span class="line">application.setAttribute(&quot;person2&quot;,new Person(&quot;Green&quot;));</span><br></pre></td></tr></table></figure></p>
+<p>获取Context属性：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ServletContext application=this.getServletContext();</span><br><span class="line">Enumberation persons=application.getAttributeNames();</span><br><span class="line">while(persons.hasMoreElements())&#123;</span><br><span class="line">String name=(String)persons.nextElement();</span><br><span class="line">Person p=(Person)persons.getAttribute(name);</span><br><span class="line">application.removeAttribute(name);</span><br></pre></td></tr></table></figure></p>
+<p>注：web应用范围具有以下两层含义：<br>（1） 表示有web应用的生命周期构成的时间段.<br>（2） 表示在web应用的生命周期内所有web组件的集合。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">setAttribute(String name,java.lang.Objectobject)：</span><br><span class="line">把一个java 对象和一个属性名绑定，并存放到ServletContext 中，参数name 指定属性名，参数Object 表示共享数据。</span><br><span class="line"></span><br><span class="line">getAttribute(String name)：</span><br><span class="line">根据参数给定的属性名，返回一个Object类型的对象。</span><br><span class="line"></span><br><span class="line">getAttributeNames()：</span><br><span class="line">返回一个Enumeration 对象，该对象包含了所有存放在ServletContext 中的属性名</span><br><span class="line"></span><br><span class="line">removeAttribute(String name) ： </span><br><span class="line">根 据 参 数 指 定 的 属 性 名 ， 从servletContext 对象中删除匹配的属性。</span><br><span class="line"></span><br><span class="line">getRealPath（&quot;/&quot;）：</span><br><span class="line">得到绝对路径</span><br><span class="line">访问web应用的静态资源</span><br></pre></td></tr></table></figure></p>
+<p>使用ServletContext接口可以直接访问web应用中的静态内容文档结构.包括HTML,GIF和JPEG文件。如以下方法:<br>.getResource<br>.getResourceAsStream<br>这两个方法的参数都是以”/“开头的字符串,表示资源相对于context根的相对路径.文档结构可以存在于服务器文件系统,或是war包中,或是在远程服务器上,抑或其他位置.不可以用来获得动态资源,比如,getResource(“/index.jsp”),这个方法将返回该jsp文件的源码,而不是动态页面.可以用”Dispatching</p>
+<p>Requests”获得动态内容.<br>列出web应用中可被访问的资源,可以使用getResourcePaths（String path）方法。<br>跨多个请求，用户和Servlets<br>web服务器支持在一台机器上共享一个IP的多个逻辑主机,这种能力被称为”虚拟主机”,每个逻辑主机都拥有它自己的servlet context。servlet context不能跨虚拟主机共享。</p>
+<h2 id="spring容器以及上下文"><a href="#spring容器以及上下文" class="headerlink" title="spring容器以及上下文"></a>spring容器以及上下文</h2><p>应用上下文即是Spring容器抽象的一种实现；而我们常见的ApplicationContext本质上说就是一个维护Bean定义以及对象之间协作关系的高级接口.<br>Spring的核心是容器，而容器并不唯一，框架本身就提供了很多个容器的实现，大概分为两种类型：一种是不常用的BeanFactory，这是最简单的容器，只能提供基本的DI功能；还有一种就是继承了BeanFactory后派生而来的应用上下文，其抽象接口也就是我们上面提到的的ApplicationContext，它能提供更多企业级的服务，例如解析配置文本信息等等，这也是应用上下文实例对象最常见的应用场景。有了上下文对象，我们就能向容器注册需要Spring管理的对象了。对于上下文抽象接口，Spring也为我们提供了多种类型的容器实现，供我们在不同的应用场景选择——</p>
+<p>　　　 ① AnnotationConfigApplicationContext:从一个或多个基于java的配置类中加载上下文定义，适用于java注解的方式；</p>
+<p>　　　　② ClassPathXmlApplicationContext:从类路径下的一个或多个xml配置文件中加载上下文定义，适用于xml配置的方式；</p>
+<p>　　　　③ FileSystemXmlApplicationContext:从文件系统下的一个或多个xml配置文件中加载上下文定义，也就是说系统盘符中加载xml配置文件；</p>
+<p>　　　　④ AnnotationConfigWebApplicationContext:专门为web应用准备的，适用于注解方式；</p>
+<p>　　　　⑤ XmlWebApplicationContext:从web应用下的一个或多个xml配置文件加载上下文定义，适用于xml配置方式。</p>
+<p>　　有了以上理解，问题就很好办了。你只要将你需要IOC容器替你管理的对象基于xml也罢，java注解也好，总之你要将需要管理的对象（Spring中我们都称之问bean）、bean之间的协作关系配置好，然后利用应用上下文对象加载进我们的Spring容器，容器就能为你的程序提供你想要的对象管理服务了。<br>　　到这儿就懂了idea报的这个配置默认的上下文的提示.其实也是过分纠结了,但是也知识整合了不少~<br><br>　　&gt;  关于这一点,更详细的解释<a href="https://www.cnblogs.com/chenbenbuyi/p/8166304.html" target="_blank" rel="noopener">https://www.cnblogs.com/chenbenbuyi/p/8166304.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/上下文/" rel="tag"># 上下文</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/18/代理模式,数组,迭代器一点小细节/" rel="next" title="代理模式,数组,迭代器|一点小细节">
+                <i class="fa fa-chevron-left"></i> 代理模式,数组,迭代器|一点小细节
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/18/Servlet-mapping容器的Context对象对请求路径(URL)怎么处理/" rel="prev" title="Servlet-mapping|容器的Context对象对请求路径(URL)怎么处理">
+                Servlet-mapping|容器的Context对象对请求路径(URL)怎么处理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/hexo_logo.JPG" alt="Even">
+            
+              <p class="site-author-name" itemprop="name">Even</p>
+              <p class="site-description motion-element" itemprop="description">Smart is the new Sexy!</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/EvenFzq" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://blog.csdn.net/qq_38630270" target="_blank" title="CSDN">
+                      
+                        <i class="fa fa-fw fa-copyright"></i>CSDN</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/6395349735" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                隔壁家的二狗子们
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://lhbit.top" title="木子丶李" target="_blank">木子丶李</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://machangwang.top/" title="MCW" target="_blank">MCW</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+		  
+
+          
+
+        </div>
+		<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="285" height="86" src="//music.163.com/outchain/player?type=2&id=22676185&auto=0&height=66"></iframe>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简单理解"><span class="nav-number">1.</span> <span class="nav-text">简单理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ServletContext"><span class="nav-number">2.</span> <span class="nav-text">ServletContext</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概要"><span class="nav-number">2.1.</span> <span class="nav-text">概要</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spring容器以及上下文"><span class="nav-number">3.</span> <span class="nav-text">spring容器以及上下文</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Even</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<span id="busuanzi_container_site_pv">
+    本站总访问量<span id="busuanzi_value_site_pv"></span>次
+</span>
+
+
+  <span class="post-meta-divider">|</span>
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共16.7k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/algolia-instant-search/instantsearch.min.css">
+
+  
+  
+  <script src="/lib/algolia-instant-search/instantsearch.min.js"></script>
+  
+
+  <script src="/js/src/algolia-search.js?v=5.1.4"></script>
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("n4mzSId4pMQy6qbO10B1anK1-gzGzoHsz", "g6SygwYKhzwXGzP5zxrvz0SS");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
